@@ -10,6 +10,8 @@ import { HeaderComponent } from './admin/layout/header/header.component';
 import { FooterComponent } from './admin/layout/footer/footer.component';
 import { MenuComponent } from './admin/layout/menu/menu.component';
 import { AdminComponent } from './admin/admin.component';
+import { UsersComponent } from './admin/users/users.component';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { AdminComponent } from './admin/admin.component';
     FooterComponent,
     MenuComponent,
     AdminComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
