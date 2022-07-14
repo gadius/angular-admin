@@ -6,12 +6,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { WelcomeComponent } from './admin/welcome/welcome.component';
+import { HeaderComponent } from './admin/layout/header/header.component';
+import { FooterComponent } from './admin/layout/footer/footer.component';
+import { MenuComponent } from './admin/layout/menu/menu.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     WelcomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    MenuComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

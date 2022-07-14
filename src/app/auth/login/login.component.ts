@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    this.router.navigate(['welcome']);
+    this.router.navigate(['admin/welcome']);
   }
 
 }

@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
 import { WelcomeComponent } from './admin/welcome/welcome.component';
 import { LoginComponent } from './auth/login/login.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'welcome', component: WelcomeComponent },
+  { path: 'admin', component: AdminComponent,
+    children: [
+      { path: 'welcome', component: WelcomeComponent },
+    ]
+  },
+  //{ path: 'welcome', component: WelcomeComponent },
 
   { path: '**', redirectTo: '/login' }
 ];
