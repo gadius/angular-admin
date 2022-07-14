@@ -11,6 +11,8 @@ import { FooterComponent } from './admin/layout/footer/footer.component';
 import { MenuComponent } from './admin/layout/menu/menu.component';
 import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './admin/users/users.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -23,11 +25,13 @@ import { UsersComponent } from './admin/users/users.component';
     MenuComponent,
     AdminComponent,
     UsersComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

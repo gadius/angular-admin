@@ -1,4 +1,4 @@
-<div class="login-page">
+<div class="login-page" *ngIf="!isLoading">
   <div class="login-box">
     <div class="login-logo">
       <a href="assets/index2.html"><b>Admin</b>LTE</a>
@@ -80,3 +80,8 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="isLoading" style="text-align: center;">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+

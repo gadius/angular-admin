@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  isLoading = false;
 
   constructor(
     private router: Router,
@@ -28,14 +29,30 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log("submit");
-    this.authservice.is_logged_in = true;
-    console.log(this.loginForm.get('email')?.value);
-    console.log(this.loginForm.value);
+    if(!this.loginForm.valid)
+      return;
+    this.isLoading = true;
+    let email: string = '';
+    let password: string = '';
+
+    email = this.loginForm.get('email')!.value;
+    password = this.loginForm.get('password')!.value;
+
+    this.authservice.login(email,password).subscribe(event => {
+      console.log(event);
+      this.isLoading = false;
+      this.authservice.is_logged_in = true;
+    },
+    error => {
+      this.isLoading = false;
+    }
+    );
+
+
+
     //this.router.navigate(['admin/welcome']);
   }
 
-  get f() { return this.loginForm.controls; }
 
 
 }
