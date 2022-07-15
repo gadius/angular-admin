@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { catchError, throwError } from "rxjs";
 
 
 @Injectable({ providedIn: 'root' })
@@ -11,18 +12,26 @@ export class AuthService{
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(email: string, password: string){
+  public login(email: string, password: string){
     return this.http.post(
       this.base_url+'login',
       {
         email: email,
         password: password
       }
-    );
+    ).pipe(
+      catchError(errorRes => {
+          let errorMessage = 'An unknown error ocurred!';
+          if(!errorRes.error || !errorRes.error.error)
+            return throwError(errorMessage);
+
+          return throwError(errorMessage);
+        }
+    ));
   }
 
 
-  logout(){
+  public logout(){
     this.is_logged_in = false;
   }
 }

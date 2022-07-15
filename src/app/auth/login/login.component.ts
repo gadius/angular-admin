@@ -38,13 +38,15 @@ export class LoginComponent implements OnInit {
     email = this.loginForm.get('email')!.value;
     password = this.loginForm.get('password')!.value;
 
-    this.authservice.login(email,password).subscribe(event => {
-      console.log(event);
+    this.authservice.login(email,password).subscribe(
+    resData => {
+      console.log(resData);
       this.isLoading = false;
       this.authservice.is_logged_in = true;
     },
-    error => {
+    errorMessage => {
       this.isLoading = false;
+      alert(errorMessage);
     }
     );
 
