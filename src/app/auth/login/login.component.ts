@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
         console.log(resData);
         this.isLoading = false;
         this.authservice.is_logged_in = true;
+        this.router.navigate(['admin/welcome']);
       },
       errorMessage => {
         this.isLoading = false;
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit {
 
 
 
-    //this.router.navigate(['admin/welcome']);
+    //
   }
 
 
