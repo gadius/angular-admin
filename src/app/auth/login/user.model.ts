@@ -6,7 +6,7 @@ export class UserModel{
     public _token: string,
   ){}
 
-    get token(){
-
-    }
+  get token(){
+    return this._token;
+  }
 }
