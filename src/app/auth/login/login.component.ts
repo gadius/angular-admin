@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -11,6 +12,8 @@ import { AuthService } from './auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isLoading = false;
+
+  authObservable!: Observable<any>;
 
   constructor(
     private router: Router,
@@ -29,26 +32,29 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    if(!this.loginForm.valid)
-      return;
-    this.isLoading = true;
-    let email: string = '';
-    let password: string = '';
+      if(!this.loginForm.valid)
+        return;
 
-    email = this.loginForm.get('email')!.value;
-    password = this.loginForm.get('password')!.value;
+      this.isLoading = true;
+      let email: string = '';
+      let password: string = '';
 
-    this.authservice.login(email,password).subscribe(
-    resData => {
-      console.log(resData);
-      this.isLoading = false;
-      this.authservice.is_logged_in = true;
-    },
-    errorMessage => {
-      this.isLoading = false;
-      alert(errorMessage);
-    }
-    );
+      email = this.loginForm.get('email')!.value;
+      password = this.loginForm.get('password')!.value;
+
+      this.authObservable = this.authservice.login(email,password);
+
+      this.authObservable.subscribe(
+        resData => {
+        console.log(resData);
+        this.isLoading = false;
+        this.authservice.is_logged_in = true;
+      },
+      errorMessage => {
+        this.isLoading = false;
+        alert(errorMessage);
+      });
+
 
 
 
