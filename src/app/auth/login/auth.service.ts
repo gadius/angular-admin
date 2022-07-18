@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError, Observable, Subject, throwError, tap } from "rxjs";
+import { catchError, Observable, Subject, throwError, tap, BehaviorSubject } from "rxjs";
 import { UserModel } from "./user.model";
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthService{
 
-  user = new Subject<UserModel>;
+  //user = new Subject<UserModel>; SE USARÁ MEJOR BEHAVIORSUBJECT PARA OBTENER EL VALOR INCLUSIVE SI AL MOMENTO DE SUSCRIBIRSE DE OTRO COMPONENTE TENIA OTRO VALOR
+  user = new BehaviorSubject<UserModel|null>(null);
 
 
   is_logged_in: boolean = false;
@@ -35,6 +36,7 @@ export class AuthService{
 
   public logout(){
     this.is_logged_in = false;
+    this.user.next(null);
   }
 
   private handleAuthentication(email: string, id: string, token: string){
