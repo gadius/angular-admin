@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isLoading = false;
+  errorMessage?: string | null;
 
   authObservable!: Observable<any>;
 
@@ -53,7 +54,8 @@ export class LoginComponent implements OnInit {
       },
       errorMessage => {
         this.isLoading = false;
-        alert(errorMessage);
+        //alert(errorMessage);
+        this.errorMessage = errorMessage;
       });
 
 
@@ -62,6 +64,8 @@ export class LoginComponent implements OnInit {
     //
   }
 
-
+  onHandleError(){
+    this.errorMessage = null;
+  }
 
 }

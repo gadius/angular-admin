@@ -14,6 +14,7 @@ import { UsersComponent } from './admin/users/users.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/login/auth-interceptor.service';
+import { AlertComponent } from './shared/alert/alert.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AuthInterceptorService } from './auth/login/auth-interceptor.service';
     AdminComponent,
     UsersComponent,
     LoadingSpinnerComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
