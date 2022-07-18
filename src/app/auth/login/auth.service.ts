@@ -10,6 +10,7 @@ import {
   BehaviorSubject,
 } from 'rxjs';
 import { UserModel } from './user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -18,7 +19,7 @@ export class AuthService {
   private tokenExpirationTimer: any;
 
   is_logged_in: boolean = false;
-  base_url: string = 'http://angular-api.test/api/';
+  base_url: string = environment.api_url;
 
   constructor(private http: HttpClient, private router: Router) {}
 

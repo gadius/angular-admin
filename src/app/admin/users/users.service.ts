@@ -2,13 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, Observable, Subject, throwError, tap, BehaviorSubject } from "rxjs";
+import { environment } from "src/environments/environment";
 
 
 
 @Injectable({ providedIn: 'root' })
 export class UsersService{
 
-  base_url: string = 'http://angular-api.test/api/';
+  base_url: string = environment.api_url;
 
   constructor(private http: HttpClient, private router: Router) {}
 
