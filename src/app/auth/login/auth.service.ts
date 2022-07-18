@@ -37,11 +37,24 @@ export class AuthService{
   public logout(){
     this.is_logged_in = false;
     this.user.next(null);
+    localStorage.removeItem('userData');
+  }
+
+  autoLogin(){
+    const userData: UserModel  = JSON.parse(localStorage.getItem('userData')!);
+
+    if(!userData)
+    {
+      return;
+    }
+    this.user.next(userData);
+
   }
 
   private handleAuthentication(email: string, id: string, token: string){
     let user_aux = new UserModel(email, id, token);
     this.user.next(user_aux);
+    localStorage.setItem('userData', JSON.stringify(user_aux));
   }
 
   private handleError(errorRes: HttpErrorResponse){
